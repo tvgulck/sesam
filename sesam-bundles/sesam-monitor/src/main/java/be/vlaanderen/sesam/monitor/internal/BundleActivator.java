@@ -1,3 +1,4 @@
+/*
  * Copyright 2011 Vlaams Gewest
  *
  * This file is part of SESAM, the Service Endpoint Security And Monitoring framework.
@@ -14,7 +15,34 @@
  *
  * You should have received a copy of the GNU Lesser General Public License
  * along with SESAM.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-This is the root for the SESAM project.
-In order to build the project, use "mvn clean install" on this root.
-The build tools provide a simple way of building an OSGI container with all the necessary bundles. This should make it easier to get SESAM up and running as a stand-alone application.
+package be.vlaanderen.sesam.monitor.internal;
+
+import org.osgi.framework.BundleContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+/**
+ * Main startup entrypoint of the application.
+ * 
+ * <p>Starts up the service.
+ * 
+ * @author Kristof Heirwegh
+ */
+public class BundleActivator {
+
+	private static final Logger log = LoggerFactory.getLogger(BundleActivator.class);
+	
+	@Autowired
+	private BundleContext context;
+
+	public void start() {
+		log.info(context.getBundle().getSymbolicName() + " - " + "Opgestart.");
+	}
+
+	public void stop() {
+		log.info(context.getBundle().getSymbolicName() + " - " + "Gestopt.");
+	}
+}

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright 2011 Vlaams Gewest
+ *
+ * This file is part of SESAM, the Service Endpoint Security And Monitoring framework.
+ *
+ * SESAM is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * SESAM is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with SESAM.  If not, see <http://www.gnu.org/licenses/>.
+ -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+						http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<bean id="geoserver-dovpub-on-3066.mmis.be_GetCapabilities" class="be.vlaanderen.sesam.monitor.MonitorTask" >
+		<property name="schedule" value="0 */5 * * * *" /> <!-- Every 5 minutes -->
+<!-- 
+		<property name="requestHostname" value="localhost" />
+		<property name="requestPort" value="8181" />
+ -->
+		<property name="requestHostname" value="geoserver-dovpub-on-3066.mmis.be" />
+		<property name="requestPort" value="8080" />
+		<property name="requestUri" value="/geoserver/ows?service=wfs&amp;version=1.1.0&amp;request=GetCapabilities" />
+		<property name="requestHeaders">
+			<map>
+				<entry key="User-Agent" value="Sesam Monitor v0.0.1" />
+				<entry key="Accept" value="text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" />
+				<entry key="Accept-Language" value="en-us,en;q=0.5" />
+				<entry key="Accept-Encoding" value="gzip, deflate" />
+				<entry key="Accept-Charset" value="ISO-8859-1,utf-8;q=0.7,*;q=0.7" />
+			</map>
+		</property>
+	</bean>
+
+<!--
+ 	<bean id="geoserver-dovpub-on-2-mgt.mmis.be_GetCapabilities" class="be.vlaanderen.sesam.monitor.MonitorTask" >
+		<property name="schedule" value="5 */5 * * * *" /> Every 5 minutes
+		<property name="requestHostname" value="geoserver-dovpub-on-2-mgt.mmis.be" />
+		<property name="requestPort" value="8080" />
+		<property name="requestUri" value="/geoserver/ows?service=wfs&amp;version=1.1.0&amp;request=GetCapabilities" />
+		<property name="requestHeaders">
+			<map>
+				<entry key="User-Agent" value="Sesam Monitor v0.0.1" />
+				<entry key="Accept" value="text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" />
+				<entry key="Accept-Language" value="en-us,en;q=0.5" />
+				<entry key="Accept-Encoding" value="gzip, deflate" />
+				<entry key="Accept-Charset" value="ISO-8859-1,utf-8;q=0.7,*;q=0.7" />
+			</map>
+		</property>
+	</bean>
+ -->
+
+<!-- VOORBEELDEN - zie ook confluence / DOV / sesam
+
+ 	<bean id="tomcatTest" class="be.vlaanderen.sesam.monitor.MonitorTask" >
+		<property name="schedule" value="*/10 * * * * *" /> Every 10 seconds, default = every hour.
+
+		<property name="requestHostname" value="localhost" />
+		<property name="requestPort" value="8080" />
+		<property name="requestUri" value="/test.png" />
+		<property name="requestMethod" value="GET" /> Default = GET
+		<property name="requestHeaders">
+			<map>
+				<entry key="User-Agent" value="Sesam Monitor v0.0.1" />
+
+				
+				<entry key="Accept" value="text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" />
+				<entry key="Accept-Charset" value="ISO-8859-1,utf-8;q=0.7,*;q=0.7" />
+			 	
+				Don't forget a content-type if you are sending a body (POST)!
+				<entry key="Content-Type" value="text/plain; charset=UTF-8" />
+
+				Host header is generated automatically if not provided
+				<entry key="Host" value="localhost:8080" /> 
+			</map>
+		</property>
+
+		Server must respond within 5 seconds, default = 60 seconds.
+		<property name="responseTimeoutMillis" value="5000" /> 
+		
+		<property name="responseHeaders"> Values are regEx!
+			<map>
+				<entry key="Content-Length" value="18141" />
+			</map>
+		</property>
+
+		 Requires a file with the contents of the body with the same name as the bean.id + "-responseBody.bin" in the task-files folder
+		 This file will only be read once (at startup) if you want to change it, resave the configuration file to pick up the changes
+		<property name="checkResponseBody" value="true" /> 
+	</bean>
+
+	<bean id="postTest" class="be.vlaanderen.sesam.monitor.MonitorTask" >
+ 		<property name="schedule" value="*/30 * * * * *" /> Every minute, at the fifth second, default = every hour.
+		<property name="requestHostname" value="localhost" />
+		<property name="requestPort" value="7777" />
+		<property name="requestUri" value="/posttest" />
+		<property name="requestMethod" value="POST" />
+		<property name="requestHeaders">
+			<map>
+				<entry key="Content-Type" value="text/plain; charset=UTF-8" />
+			</map>
+		</property>
+	</bean>
+ -->
+</beans>

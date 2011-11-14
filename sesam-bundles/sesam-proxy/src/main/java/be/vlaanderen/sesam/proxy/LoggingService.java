@@ -1,3 +1,4 @@
+/*
  * Copyright 2011 Vlaams Gewest
  *
  * This file is part of SESAM, the Service Endpoint Security And Monitoring framework.
@@ -14,7 +15,27 @@
  *
  * You should have received a copy of the GNU Lesser General Public License
  * along with SESAM.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-This is the root for the SESAM project.
-In order to build the project, use "mvn clean install" on this root.
-The build tools provide a simple way of building an OSGI container with all the necessary bundles. This should make it easier to get SESAM up and running as a stand-alone application.
+package be.vlaanderen.sesam.proxy;
+
+import be.vlaanderen.sesam.proxy.http.Conversation;
+
+/**
+ * Service to log communication events.
+ * <p>
+ * not intended to be used for other application events. (use generic logging)
+ * 
+ * @author Kristof Heirwegh
+ */
+public interface LoggingService {
+
+	void logException(Conversation c, String message);
+
+	/**
+	 * Call onFinish once you have handled the request (but not before! onFinish must be the last action)
+	 * <p>
+	 * This is more of a notify than a handle, you can't interact or influence the exception handling
+	 */
+	void logConversationFinished(final Conversation c);
+}

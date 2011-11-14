@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright 2011 Vlaams Gewest
+ *
+ * This file is part of SESAM, the Service Endpoint Security And Monitoring framework.
+ *
+ * SESAM is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * SESAM is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with SESAM.  If not, see <http://www.gnu.org/licenses/>.
+ -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:akka="http://akka.io/schema/akka"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+  						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+  						http://akka.io/schema/akka http://akka.io/akka-1.0.xsd">
+
+	<!-- regular spring configuration file defining the beans for this bundle. 
+		We've kept the osgi definitions in a separate configuration file so that 
+		this file can easily be used for integration testing outside of an OSGi environment -->
+
+	<context:component-scan base-package="be.vlaanderen.sesam.proxy" />
+
+	<bean id="proxyBundleActivator" class="be.vlaanderen.sesam.proxy.internal.BundleActivator" init-method="start" destroy-method="stop" />
+
+	<bean id="loggingService" class="be.vlaanderen.sesam.proxy.internal.http.LogbackLoggingService" init-method="init">
+		<property name="propertiesLocation" value="configurations/logging.properties" />
+	<!-- 
+		// this is the default,		
+		<property name="logFormat" value="%host %other %logname %time1 %methodurl %code %bytesd %refererquot %uaquot" />
+ 	-->
+ 	</bean>
+
+	<bean id="clientSocketService" class="be.vlaanderen.sesam.proxy.internal.http.HttpClientSocketChannelServiceImpl" />
+
+
+	<!-- Akka - Services -->
+
+ 	<bean id="wfsGetFeatureLoggingActor" class="be.vlaanderen.sesam.proxy.internal.http.actors.WfsGetFeatureLoggingActorFactory">
+		<property name="timeout" value="5000"/>
+	</bean>
+
+
+<!--  	<bean id="clientSocketService" class="be.vlaanderen.sesam.proxy.internal.actors.ClientSocketChannelServiceFactory">
+		<property name="implementation" value="be.vlaanderen.sesam.proxy.internal.actors.HttpClientSocketChannelServiceImpl" />
+		<property name="timeout" value="30000"/>
+	</bean>
+ -->	
+	<!-- Akka - Actors -->
+
+
+<!--
+ 	<bean id="loggingService" class="be.vlaanderen.sesam.proxy.internal.actors.ConsoleLoggingService" />
+ 	<bean id="loggingActor" class="be.vlaanderen.sesam.proxy.internal.actors.ServiceLoggingActorFactory" depends-on="loggingService">
+		<property name="timeout" value="5000"/>
+	</bean>
+ -->
+ 
+	
+	
+	
+	
+	
+	
+	
+
+	<!-- Doesn't work (classloader problems) -->
+<!--
+  	<akka:typed-actor id="loggingService"
+                    interface="be.vlaanderen.sesam.proxy.LoggingService"
+                    implementation="be.vlaanderen.sesam.proxy.internal.actors.LoggingService"
+                    timeout="5000"
+                    scope="singleton"
+                    >
+	</akka:typed-actor>
+
+ 	<akka:typed-actor id="clientSocketService"
+                    interface="be.vlaanderen.sesam.proxy.ClientSocketChannelService"
+                    implementation="be.vlaanderen.sesam.proxy.internal.actors.ClientSocketChannelServiceImpl"
+                    timeout="30000"
+                    scope="singleton"
+                    >
+	</akka:typed-actor>
+ -->
+
+
+<!-- @components
+ 	<bean id="proxyConfigHandler" class="be.vlaanderen.sesam.proxy.internal.ConfigurationHandler" />
+ 	<bean id="proxyServerPipeline" class="be.vlaanderen.sesam.proxy.internal.ServerPipelineFactory" />
+	<bean id="proxyHttpCentral" class="be.vlaanderen.sesam.proxy.internal.HttpCentral" />
+ 	<bean id="proxyHttpRuleMatcher" class="be.vlaanderen.sesam.proxy.internal.HttpRuleMatcher" />
+ -->
+
+ </beans>

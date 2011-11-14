@@ -1,0 +1,24 @@
+#--------------------------------------------------------------------------
+# Use this file to add customized Bnd instructions for the wrapped library
+#--------------------------------------------------------------------------
+
+#
+# this unpacks the contents of the wrapped jar artifact inside the bundle
+# to also inline dependencies of this artifact add Embed-Transitive: true
+#
+Embed-Dependency: *;scope=compile|runtime;type=!pom;inline=true
+
+Embed-Transitive: true
+
+Import-Package: !org.apache.tools.ant.*,*;resolution:=optional
+
+#Import-Package: sun.misc;resolution:=optional,\
+				EDU.oswego.cs.dl.util.concurrent;resolution:=optional,\
+				com.bea.jvm;resolution:=optional,\
+				com.jrockit.management.rmp;resolution:=optional,\
+				com.sun.jdi*;resolution:=optional,\
+				junit.framework;resolution:=optional,\
+				org.apache.tools.ant*;resolution:=optional,\
+				*
+
+Export-Package:	*;-split-package:=merge-first

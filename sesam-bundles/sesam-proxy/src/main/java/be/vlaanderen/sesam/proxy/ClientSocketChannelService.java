@@ -1,3 +1,4 @@
+/*
  * Copyright 2011 Vlaams Gewest
  *
  * This file is part of SESAM, the Service Endpoint Security And Monitoring framework.
@@ -14,7 +15,22 @@
  *
  * You should have received a copy of the GNU Lesser General Public License
  * along with SESAM.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-This is the root for the SESAM project.
-In order to build the project, use "mvn clean install" on this root.
-The build tools provide a simple way of building an OSGI container with all the necessary bundles. This should make it easier to get SESAM up and running as a stand-alone application.
+package be.vlaanderen.sesam.proxy;
+
+import org.jboss.netty.channel.ChannelFuture;
+
+import be.vlaanderen.sesam.proxy.actors.MessageCallback;
+
+/**
+ * This service creates a new socket async.
+ * 
+ * @author Kristof Heirwegh
+ */
+public interface ClientSocketChannelService<T> {
+
+	static final String IDENTIFIER = "ClientSocketChannelService";
+
+	public void createClientChannel(final T task, final MessageCallback<ChannelFuture> onFinish);
+}

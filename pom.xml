@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright 2011 Vlaams Gewest
+ *
+ * This file is part of SESAM, the Service Endpoint Security And Monitoring framework.
+ *
+ * SESAM is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * SESAM is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with SESAM.  If not, see <http://www.gnu.org/licenses/>.
+ -->
+
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>be.vlaanderen.sesam</groupId>
+	<artifactId>sesam-parent</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+
+	<name>SESAM</name>
+	<description>Service Endpoint Security And Monitoring</description>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>osgified</module>
+		<module>sesam-bundles</module>
+		<!--module>build-tools</module-->
+	</modules>
+
+	<developers>
+		<developer>
+			<id>kristofh</id>
+			<name>Kristof Heirweg</name>
+			<roles>
+				<role>Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>pdg</id>
+			<name>Pieter De Graef</name>
+			<roles>
+				<role>Developer</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<properties>
+		<spring.dm.version>2.0.0.M1</spring.dm.version>
+		<spring.version>3.0.6.RELEASE</spring.version>
+		<akka.version>1.2</akka.version>
+		<slf4j.version>1.6.0</slf4j.version>
+		<java.version>1.6</java.version>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>repo2.maven.org</id>
+			<url>http://repo2.maven.org/maven2</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>com.springsource.repository.bundles.external</id>
+			<url>http://repository.springsource.com/maven/bundles/external</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>springsource-milestones</id>
+			<name>SpringSource Milestones Proxy</name>
+			<url>https://oss.sonatype.org/content/repositories/springsource-milestones</url>
+		</repository>
+		<repository>
+			<id>akka.repository</id>
+			<name>Akka Maven Repository</name>
+			<url>http://akka.io/repository</url> <!-- http://repo.typesafe.com/typesafe/releases -->
+		</repository>
+		<repository>
+			<id>ScalaToolsReleasesRepo</id>
+			<name>Scala Tools Releases Repo</name>
+			<url>http://scala-tools.org/repo-releases/</url>
+		</repository>
+		<repository>
+			<id>repository.jboss.org</id>
+			<url>https://repository.jboss.org/nexus/content/repositories/releases/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>Google code</id>
+			<url>http://guiceyfruit.googlecode.com/svn/repo/releases/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>OPJS Pax</id>
+			<url>http://repository.ops4j.org/maven2</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<!--
+	
+	 // TODO //
+	 
+	<scm>
+		<connection></connection>
+		<developerConnection></developerConnection>
+		<url></url>
+	</scm>
+
+	<organization>
+		<name></name>
+		<url></url>
+	</organization>
+	
+	<mailingLists>
+		<mailingList>
+			<name>DEV</name>
+			<post>mailto:??</post>
+			<subscribe>pipermail</subscribe>
+			<unsubscribe>pipermail</unsubscribe>
+			<archive>pipermail</archive>
+		</mailingList>
+	</mailingLists>
+	
+	<licenses>
+		<license>
+			<name></name>
+			<url></url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	
+	<issueManagement>
+		<system>JIRA</system>
+		<url>??</url>
+	</issueManagement>
+	
+	<ciManagement>
+		<system>hudson</system>
+		<url>http://??/hudson/</url>
+		<notifiers>
+			<notifier>
+				<type>mail</type>
+				<sendOnError>true</sendOnError>
+				<sendOnFailure>true</sendOnFailure>
+				<sendOnSuccess>false</sendOnSuccess>
+				<sendOnWarning>true</sendOnWarning>
+				<configuration>
+					<address></address>
+				</configuration>
+			</notifier>
+		</notifiers>
+	</ciManagement>
+
+ -->
+
+</project>

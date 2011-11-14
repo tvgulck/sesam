@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright 2011 Vlaams Gewest
+ *
+ * This file is part of SESAM, the Service Endpoint Security And Monitoring framework.
+ *
+ * SESAM is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * SESAM is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with SESAM.  If not, see <http://www.gnu.org/licenses/>.
+ -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>be.vlaanderen.sesam</groupId>
+		<artifactId>sesam-parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>be.vlaanderen.sesam.osgified</groupId>
+	<artifactId>sesam-osgified-parent</artifactId>
+	<packaging>pom</packaging>
+
+	<name>SESAM OSGIfied bundle parent</name>
+	<description>
+		Parent module for non-OSGI jars that have been OSGIfied (turned into an OSGI bundle) for SESAM.
+	</description>
+
+	<modules>
+		<module>akka-all-osgified</module>
+		<module>aspectwerkz-osgified</module>
+		<module>javax-activation-osgified</module>
+		<module>multiverse-osgified</module>
+		<module>scala-library-osgified</module>
+	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<type>pom</type>
+				<groupId>be.vlaanderen.sesam.build</groupId>
+				<artifactId>sesam-dependencies</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+				<scope>provided</scope>
+				<optional>true</optional>
+			</dependency>
+			<dependency>
+				<groupId>org.osgi</groupId>
+				<artifactId>osgi_R4_core</artifactId>
+				<version>1.0</version>
+				<scope>provided</scope>
+				<optional>true</optional>
+			</dependency>
+			<dependency>
+				<groupId>org.osgi</groupId>
+				<artifactId>osgi_R4_compendium</artifactId>
+				<version>1.0</version>
+				<scope>provided</scope>
+				<optional>true</optional>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.ops4j</groupId>
+				<artifactId>maven-pax-plugin</artifactId>
+				<!-- Enable improved OSGi compilation support for the bundle life-cycle. 
+					to switch back to the standard bundle life-cycle, move this setting down 
+					to the maven-bundle-plugin section -->
+				<extensions>true</extensions>
+			</plugin>
+			<plugin>
+				<!-- The following instructions are optimized for wrapping third-party 
+					libraries as OSGi bundles -->
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>2.3.5</version>
+				<configuration>
+					<instructions>
+						<Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
+						<Bundle-Version>${wrapped.version}</Bundle-Version>
+						<!-- Export wrapped contents: don't use Export-Package:* as this 
+							bundles everything on the class-path -->
+						<_exportcontents>*</_exportcontents>
+						<Private-Package>!*</Private-Package>
+						<!-- Each module can override these defaults in their osgi.bnd file -->
+						<_include>-osgi.bnd</_include>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

@@ -1,3 +1,4 @@
+/*
  * Copyright 2011 Vlaams Gewest
  *
  * This file is part of SESAM, the Service Endpoint Security And Monitoring framework.
@@ -14,7 +15,36 @@
  *
  * You should have received a copy of the GNU Lesser General Public License
  * along with SESAM.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-This is the root for the SESAM project.
-In order to build the project, use "mvn clean install" on this root.
-The build tools provide a simple way of building an OSGI container with all the necessary bundles. This should make it easier to get SESAM up and running as a stand-alone application.
+package be.vlaanderen.sesam.proxy.internal.http.messaging;
+
+import org.jboss.netty.handler.codec.http.HttpChunk;
+
+import be.vlaanderen.sesam.proxy.actors.Actor;
+
+/**
+ * @author Kristof Heirwegh
+ * 
+ */
+public class HttpChunkResult extends HttpResult {
+
+	public HttpChunkResult(long conversationId, Actor messageHandler) {
+		super(conversationId, messageHandler);
+	}
+
+	private HttpChunk chunk;
+
+	/**
+	 * You must use "synchronised" if you want to change this shared clone
+	 * 
+	 * @return
+	 */
+	public HttpChunk getChunk() {
+		return chunk;
+	}
+
+	public void setChunk(HttpChunk chunk) {
+		this.chunk = chunk;
+	}
+}

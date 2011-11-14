@@ -1,0 +1,77 @@
+<!--
+ * Copyright 2011 Vlaams Gewest
+ *
+ * This file is part of SESAM, the Service Endpoint Security And Monitoring framework.
+ *
+ * SESAM is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * SESAM is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with SESAM.  If not, see <http://www.gnu.org/licenses/>.
+ -->
+
+<included>
+	<appender name="MONITORFILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>monitor.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>monitor-%d{yyyy-MM-dd}.%i.log.zip</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %msg%n</pattern>
+		</encoder>
+	</appender>
+
+
+	<!-- Activationlevel for SMTPAppender is ERROR -->
+	<!-- See: http://logback.qos.ch/manual/appenders.html -->
+	<appender name="MONITOREMAIL" class="ch.qos.logback.classic.net.SMTPAppender">
+	
+		<!-- === Mailserver settings === -->
+		<smtpHost>xxx.be</smtpHost>
+ 		<smtpPort>25</smtpPort> <!-- 465 -->
+		<!-- <ssl>true</ssl> -->
+		<username>xxx@milieuinfo.be</username>
+		<password>1234</password>
+		
+		<!-- === Mail settings === -->
+ 		<from>"Sesam Monitor &lt;xxx@milieuinfoi.be&gt;"</from>
+		<to>kristofh@dfc.be</to>
+		<to>wouter.schaubroeck@gmail.com</to>
+
+ 		<subject>SESAM-Monitor: %-5level %msg{50}</subject>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %msg%n</pattern>
+		</layout>
+ 
+ 		<!-- === Logger Settings === -->
+		<!-- 	// default so not needed	<evaluator class="ch.qos.logback.classic.boolex.OnErrorEvaluator" /> -->
+
+		<!-- Number of logstatements to send. 1 == just the error  -->
+ 		<cyclicBufferTracker class="ch.qos.logback.core.spi.CyclicBufferTrackerImpl">
+			<bufferSize>1</bufferSize>
+		</cyclicBufferTracker>
+	</appender>
+
+
+	<logger name="monitor.log" additivity="false">
+		<level value="INFO" />
+<!-- // not working !!
+ 		<appender-ref ref="MONITOREMAIL" />
+ -->
+ 		<appender-ref ref="MONITORFILE" />
+	</logger>
+
+</included>

@@ -1,0 +1,18 @@
+Manifest-Version: 1
+Bundle-ManifestVersion: 2
+Bundle-Name: Sesam - Proxy
+Bundle-SymbolicName: sesam.proxy
+Bundle-Version: 0.0.1.SNAPSHOT
+Export-Package: be.vlaanderen.dov.sesam.proxy,
+ be.vlaanderen.dov.sesam.proxy.actors,
+ be.vlaanderen.dov.sesam.proxy.http,
+ be.vlaanderen.dov.sesam.proxy.http.actors,
+ be.vlaanderen.dov.sesam.proxy.internal,
+ be.vlaanderen.dov.sesam.proxy.internal.actors.messaging,
+ be.vlaanderen.dov.sesam.proxy.internal.http,
+ be.vlaanderen.dov.sesam.proxy.internal.http.actors,
+ be.vlaanderen.dov.sesam.proxy.internal.http.messaging,
+ be.vlaanderen.dov.sesam.proxy.internal.util.jsr166
+Import-Package: org.osgi.framework,
+ org.osgi.util.tracker
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

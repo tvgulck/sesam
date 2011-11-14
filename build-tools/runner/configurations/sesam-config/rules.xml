@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright 2011 Vlaams Gewest
+ *
+ * This file is part of SESAM, the Service Endpoint Security And Monitoring framework.
+ *
+ * SESAM is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * SESAM is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with SESAM.  If not, see <http://www.gnu.org/licenses/>.
+ -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+  						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+  						http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<util:list id="rules" value-type="be.vlaanderen.sesam.config.Rule">
+		<bean class="be.vlaanderen.sesam.config.HttpRule">
+			<property name="name" value="Geoserver Ontwikkeling" />
+			<property name="localRequestPort" value="40000" />
+<!-- 
+ 			<property name="forwardAddress" value="geoserver-dovpub-on-3066.mmis.be" />
+			<property name="forwardPort" value="40000" />
+-->
+
+ 			<property name="forwardAddress" value="ontwikkel.dov.vlaanderen.be" />
+			<property name="forwardPort" value="80" />
+
+		</bean>
+
+<!--     
+		<bean class="be.vlaanderen.sesam.config.HttpRule">
+			<property name="name" value="Test WFS actor" />
+			<property name="localRequestPort" value="8888" />
+			<property name="forwardAddress" value="localhost" />
+			<property name="forwardPort" value="8181" />
+			<property name="actors">
+				<list>
+					<value>wfsGetFeatureLoggingActor</value>
+  				</list>
+			</property>
+		</bean>
+-->
+	</util:list>
+</beans>

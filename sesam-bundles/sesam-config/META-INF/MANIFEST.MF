@@ -1,0 +1,12 @@
+Manifest-Version: 1
+Bundle-ManifestVersion: 2
+Bundle-Name: Sesam - Config
+Bundle-SymbolicName: sesam-config
+Bundle-Version: 0.0.1.SNAPSHOT
+Export-Package: be.vlaanderen.dov.sesam.config.internal,
+ be.vlaanderen.dov.sesam.config.service,
+ be.vlaanderen.dov.sesam.config.service.internal,
+ be.vlaanderen.sesam.config
+Import-Package: org.osgi.framework,
+ org.osgi.util.tracker
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

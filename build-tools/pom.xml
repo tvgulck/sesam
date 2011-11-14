@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright 2011 Vlaams Gewest
+ *
+ * This file is part of SESAM, the Service Endpoint Security And Monitoring framework.
+ *
+ * SESAM is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * SESAM is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with SESAM.  If not, see <http://www.gnu.org/licenses/>.
+ -->
+
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<relativePath>../</relativePath>
+		<groupId>be.vlaanderen.sesam</groupId>
+		<artifactId>sesam-parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>be.vlaanderen.sesam.build</groupId>
+	<artifactId>sesam-runner</artifactId>
+	<packaging>pom</packaging>
+
+	<name>SESAM Stand-Alone Runner</name>
+	<description>Project that builds a stand-alone runnable version of SESAM.</description>
+
+	<properties>
+		<org.osgi.service.http.port>8080</org.osgi.service.http.port>
+		<org.osgi.service.http.port.secure>8443</org.osgi.service.http.port.secure>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<logback.configurationFile>configurations/logback.xml</logback.configurationFile>
+	</properties>
+
+	<modules>
+		<module>dependencies</module>
+		<!--module>../osgified</module>
+		<module>../sesam-bundles</module-->
+	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<!-- Dependency pom representing the global class-path of imported bundles -->
+				<type>pom</type>
+				<groupId>be.vlaanderen.sesam.build</groupId>
+				<artifactId>sesam-dependencies</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+				<scope>provided</scope>
+				<optional>true</optional>
+			</dependency>
+			<dependency>
+				<groupId>org.osgi</groupId>
+				<artifactId>osgi_R4_core</artifactId>
+				<version>1.0</version>
+				<scope>provided</scope>
+				<optional>true</optional>
+			</dependency>
+			<dependency>
+				<groupId>org.osgi</groupId>
+				<artifactId>osgi_R4_compendium</artifactId>
+				<version>1.0</version>
+				<scope>provided</scope>
+				<optional>true</optional>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<!-- OSGIfied Bundles -->
+		<!--dependency>
+			<groupId>be.vlaanderen.sesam.osgified</groupId>
+			<artifactId>akka-all-osgified</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>be.vlaanderen.sesam.osgified</groupId>
+			<artifactId>scala-library-osgified</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>be.vlaanderen.sesam.osgified</groupId>
+			<artifactId>aspectwerkz-osgified</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>be.vlaanderen.sesam.osgified</groupId>
+			<artifactId>multiverse-osgified</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>be.vlaanderen.sesam.osgified</groupId>
+			<artifactId>javax-activation-osgified</artifactId>
+			<version>${project.version}</version>
+		</dependency-->
+		
+		<!-- SESAM Bundles -->
+		<dependency>
+			<groupId>be.vlaanderen.sesam</groupId>
+			<artifactId>sesam-bundle-config</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>be.vlaanderen.sesam</groupId>
+			<artifactId>sesam-bundle-monitor</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>be.vlaanderen.sesam</groupId>
+			<artifactId>sesam-bundle-proxy</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.ops4j</groupId>
+				<artifactId>maven-pax-plugin</artifactId>
+				<version>1.5</version>
+				<configuration>
+					<provision>
+						<param>--platform=felix</param>
+					</provision>
+				</configuration>
+				<executions>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<encoding>utf8</encoding>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.4.1</version>
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>runner</directory>
+							<excludes>
+								<exclude>configurations/**/*</exclude>
+								<exclude>**/.*/*</exclude>
+							</excludes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin>
+  		</plugins>
+	</build>
+
+</project>

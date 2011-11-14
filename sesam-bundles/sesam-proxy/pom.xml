@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright 2011 Vlaams Gewest
+ *
+ * This file is part of SESAM, the Service Endpoint Security And Monitoring framework.
+ *
+ * SESAM is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * SESAM is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with SESAM.  If not, see <http://www.gnu.org/licenses/>.
+ -->
+
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<relativePath>../</relativePath>
+		<groupId>be.vlaanderen.sesam</groupId>
+		<artifactId>sesam-bundle-parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>sesam-bundle-proxy</artifactId>
+	<packaging>bundle</packaging>
+
+	<name>SESAM Proxy Bundle</name>
+
+	<properties>
+		<bundle.symbolicName>sesam-proxy</bundle.symbolicName>
+		<bundle.namespace>be.vlaanderen.sesam.proxy</bundle.namespace>
+	</properties>
+	
+	<dependencies>
+
+		<!--  Eigen bundles -->
+		<dependency>
+			<groupId>be.vlaanderen.sesam</groupId>
+			<artifactId>sesam-bundle-config</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+			<optional>true</optional>
+		</dependency>
+	
+		<!-- Externe dependencies -->
+		<dependency>
+			<groupId>org.jboss.netty</groupId>
+			<artifactId>netty</artifactId>
+			<version>3.2.5.Final</version>
+			<scope>provided</scope>
+			<optional>true</optional>
+		</dependency>
+
+
+		<!-- Akka -->
+
+		<!-- NOT A BUNDLE !! -->
+		<dependency> 
+			<!-- (actually this one is, but it's also in the osgified version) -->
+ 			<groupId>se.scalablesolutions.akka</groupId>
+			<artifactId>akka-actor</artifactId>
+			<version>${akka.version}</version>
+			<scope>provided</scope>
+			<optional>true</optional>
+		</dependency>
+ 		<dependency>
+			<groupId>se.scalablesolutions.akka</groupId>
+			<artifactId>akka-typed-actor</artifactId>
+			<version>${akka.version}</version>
+			<scope>provided</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>se.scalablesolutions.akka</groupId>
+			<artifactId>akka-spring</artifactId>
+			<version>${akka.version}</version>
+			<scope>provided</scope>
+			<optional>true</optional>
+		</dependency>
+		
+		<!-- OSGi / Spring -->
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>osgi_R4_core</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>osgi_R4_compendium</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+			<scope>provided</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+			<scope>provided</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.version}</version>
+			<scope>provided</scope>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- Wrapped bundles -->
+		<dependency>
+			<groupId>be.vlaanderen.sesam.osgified</groupId>
+			<artifactId>sesam-osgified-parent</artifactId>
+			<version>${sesam.osgified.version}</version>
+			<scope>provided</scope>
+			<type>pom</type>
+			<optional>true</optional>
+		</dependency>
+	
+		<!-- TEST -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.9</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<encoding>utf8</encoding>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
