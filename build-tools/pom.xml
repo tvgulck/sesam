@@ -46,8 +46,8 @@
 
 	<modules>
 		<module>dependencies</module>
-		<!--module>../osgified</module>
-		<module>../sesam-bundles</module-->
+		<module>../osgified</module>
+		<module>../sesam-bundles</module>
 	</modules>
 
 	<dependencyManagement>
