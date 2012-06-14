@@ -85,7 +85,7 @@
 		<repository>
 			<id>akka.repository</id>
 			<name>Akka Maven Repository</name>
-			<url>http://akka.io/repository</url> <!-- http://repo.typesafe.com/typesafe/releases -->
+			<url>http://repo.akka.io/releases</url> <!-- http://repo.typesafe.com/typesafe/releases -->
 		</repository>
 		<repository>
 			<id>ScalaToolsReleasesRepo</id>
