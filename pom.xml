@@ -35,6 +35,7 @@
 		<module>osgified</module>
 		<module>sesam-bundles</module>
 		<!--module>build-tools</module-->
+        <module>platforms</module>
 	</modules>
 
 	<developers>
@@ -55,12 +56,18 @@
 	</developers>
 
 	<properties>
-		<spring.dm.version>2.0.0.M1</spring.dm.version>
-		<spring.version>3.0.6.RELEASE</spring.version>
 		<akka.version>1.2</akka.version>
-		<slf4j.version>1.6.0</slf4j.version>
-		<java.version>1.6</java.version>
-	</properties>
+        <commons-io.version>2.0.1</commons-io.version>
+        <jackson.version>1.8.0</jackson.version>
+        <java.version>1.6</java.version>
+        <objenesis.version>1.2</objenesis.version>
+        <netty.version>3.2.5.Final</netty.version>
+        <slf4j.version>1.6.0</slf4j.version>
+        <spring.dm.version>2.0.0.M1</spring.dm.version>
+        <spring.version>3.0.6.RELEASE</spring.version>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
 	<repositories>
 		<repository>
