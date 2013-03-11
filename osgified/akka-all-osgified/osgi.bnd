@@ -9,3 +9,5 @@
 Embed-Dependency: *;scope=compile|runtime;type=!pom;inline=true
 
 Embed-Transitive: true
+
+Import-Package: com.google.inject.*;version="[1.2,3)",*

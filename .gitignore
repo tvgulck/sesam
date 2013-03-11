@@ -1,0 +1,11 @@
+# Maven output directory
+target
+
+# IntelliJ project metadata
+*.i??
+.idea
+
+# Eclipse project metadata
+.classpath
+.project
+.settings

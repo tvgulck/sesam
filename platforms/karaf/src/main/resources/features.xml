@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features name="sesam-${project.version}">
+    <feature name="sesam" resolver="(obr)">
+        <bundle dependency="true">mvn:commons-io/commons-io/${commons-io.version}</bundle>
+        <bundle dependency="true">mvn:org.codehaus.jackson/jackson-core-asl/${jackson.version}</bundle>
+        <bundle dependency="true">mvn:org.codehaus.jackson/jackson-mapper-asl/${jackson.version}</bundle>
+        <bundle dependency="true">mvn:org.jboss.netty/netty/${netty.version}</bundle>
+        <bundle dependency="true">mvn:org.objenesis/objenesis/${objenesis.version}</bundle>
+        <bundle dependency="true">mvn:be.vlaanderen.sesam.osgified/akka-all-osgified/${project.version}</bundle>
+        <bundle dependency="true">mvn:be.vlaanderen.sesam.osgified/aspectwerkz-osgified/${project.version}</bundle>
+        <bundle dependency="true">mvn:be.vlaanderen.sesam.osgified/multiverse-osgified/${project.version}</bundle>
+        <bundle dependency="true">mvn:be.vlaanderen.sesam.osgified/scala-library-osgified/${project.version}</bundle>
+        <bundle>mvn:be.vlaanderen.sesam/sesam-bundle-config/${project.version}</bundle>
+        <bundle>mvn:be.vlaanderen.sesam/sesam-bundle-monitor/${project.version}</bundle>
+        <bundle>mvn:be.vlaanderen.sesam/sesam-bundle-proxy/${project.version}</bundle>
+    </feature>
+</features>

@@ -122,7 +122,7 @@
 		<dependency>
 			<groupId>org.jboss.netty</groupId>
 			<artifactId>netty</artifactId>
-			<version>3.2.5.Final</version>
+			<version>${netty.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -140,19 +140,19 @@
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-core-asl</artifactId>
-			<version>1.8.0</version>
+			<version>${jackson.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
-			<version>1.8.0</version>
+			<version>${jackson.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.objenesis</groupId>
 			<artifactId>objenesis</artifactId>
-			<version>1.2</version>
+			<version>${objenesis.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -170,7 +170,7 @@
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
-			<version>2.0.1</version>
+			<version>${commons-io.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
